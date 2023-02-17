@@ -75,6 +75,7 @@ exports.updateImageUserFile = async(id,nfile)=>{
             
 
         }); 
+
         if(fs.existsSync(direxist)){
 
             nfile.mv(dirput,(error)=>{

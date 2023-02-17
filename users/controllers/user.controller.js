@@ -6,7 +6,7 @@ const userFileModel = require('../models/userfile.model');
 
 exports.registerUser = (request,response)=>{
 
-    console.log('received register user request');
+    console.log('received register user request',request.body);
 
     usersModel.registerUser(request.body).then((user,error)=>{
 
@@ -21,9 +21,9 @@ exports.registerUser = (request,response)=>{
                 if(error){
                     throw error.message;
                 }
-                     if (res){
-                            return response.status(200).send({info:true});
-                     }                       
+                if(res){
+                    return response.status(200).send({info:true});
+                }                        
                 
                 
             }).catch(error=>{
@@ -53,8 +53,8 @@ exports.loginUser = (request,response)=>{
 
         if(user !== null){
             return response.status(200).send(user);
-        }else {
 
+        }else{
             return response.status(204).send(null);
         }
 
@@ -85,7 +85,7 @@ exports.uploadUserPic = (request,response)=>{
                 }
 
                 if(result){
-                    return response.status(200).send(user);
+                 return response.status(200).send(user);   
                 }
                 
                
@@ -100,3 +100,4 @@ exports.uploadUserPic = (request,response)=>{
     });
 
 }
+

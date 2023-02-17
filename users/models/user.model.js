@@ -43,6 +43,7 @@ exports.loginUser = (info)=>{
             if(result){
                 
                 console.log(result);
+                resolve(result);
                 
             }else{
                 resolve(result);
@@ -62,7 +63,7 @@ exports.registerUser = (user)=>{
     try{
 
         const usr = new Users(user);
-
+        return usr.save().catch(error=>error.message);
         
 
     }catch(error){
@@ -76,7 +77,7 @@ exports.updateUserPic = (userid,picname)=>{
 
     return new Promise((resolve,reject)=>{
 
-        findOneAndUpdate({_id:userid},{$set:{user_image:picname}},{new:true}).exec((error,user)=>{
+        Users.findOneAndUpdate({_id:userid},{$set:{user_image: picname}},{new:true}).exec((error,user)=>{
             
             if(error){
                 reject(error.message);
